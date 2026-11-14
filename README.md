@@ -4,4 +4,6 @@ Presentazione di un progetto preliminare di condominio sviluppato interamente co
 
 Progetto dimostrativo. **Preliminare, da verificare e firmare**: non è un progetto esecutivo e non è un'offerta di vendita.
 
-Il sito è in preparazione.
+Sito: https://manliograndi-del.github.io/condominio-ai-demo/
+
+Il modello 3D usa three.js r147 (licenza MIT, in `lib/`).
