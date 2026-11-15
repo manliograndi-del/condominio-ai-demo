@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Via Savani 11 · un condominio progettato dall'intelligenza artificiale</title>
+<meta name="description" content="Demo: presentazione di un progetto preliminare di condominio sviluppato interamente con l'intelligenza artificiale.">
+<style>
+:root{
+  --bg:#f6f3ee; --paper:#fffdf9; --ink:#1b1f22; --muted:#626a70; --line:#ddd6c9;
+  --accent:#2f5d50; --accent2:#b9772f; --night:#0e1a22; --night2:#152630; --nightline:#28414f; --nightink:#e7eef1; --nightmuted:#9db0ba;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;margin:0;text-wrap:balance}
+h2{font-size:clamp(1.9rem,4.4vw,3rem);letter-spacing:-.01em}
+h3{font-size:1.25rem}
+p{margin:.7em 0;text-wrap:pretty}
+.eyebrow{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.9rem}
+.lead{font-size:1.14rem;color:var(--muted);max-width:44rem}
+section{padding:88px 0}
+.sechead{display:grid;gap:8px;margin-bottom:40px}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .25s,box-shadow .25s,color .25s;color:#fff}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.nav.solid{background:rgba(246,243,238,.92);backdrop-filter:blur(10px);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+.brand{font-family:var(--serif);font-size:1.15rem;text-decoration:none;white-space:nowrap}
+.brand b{font-weight:600}
+.pill{font-family:var(--sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid currentColor;border-radius:99px;padding:2px 8px;margin-left:8px;opacity:.8;vertical-align:middle}
+.nav nav{margin-left:auto;display:flex;gap:22px;font-size:.92rem}
+.nav nav a{text-decoration:none;opacity:.85}
+.nav nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
+@media(max-width:760px){.nav nav{gap:14px;font-size:.82rem;overflow-x:auto;scrollbar-width:none;mask-image:linear-gradient(90deg,#000 85%,transparent)}.nav nav::-webkit-scrollbar{display:none}.pill{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff;background:#223 center/cover no-repeat;background-image:url(img/r_esterno_sud-ovest.jpg)}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,24,.55) 0%,rgba(10,18,24,.05) 30%,rgba(10,18,24,.25) 55%,rgba(10,18,24,.9) 100%)}
+.hero .wrap{position:relative;width:100%;padding-bottom:44px;padding-top:120px}
+.hero h1{font-size:clamp(2.2rem,5.6vw,4.2rem);max-width:17ch;letter-spacing:-.015em}
+.hero h1 em{font-style:italic;color:#f1d9b0}
+.hero p{font-size:clamp(1rem,1.6vw,1.2rem);max-width:40rem;opacity:.92;margin:18px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border-top:1px solid rgba(255,255,255,.3)}
+.kpi{padding:18px 18px 0 0}
+.kpi b{font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,3.6vw,2.7rem);display:block;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{font-size:.85rem;opacity:.85;display:block;margin-top:4px;max-width:16rem}
+@media(max-width:760px){.kpis{grid-template-columns:1fr 1fr}.kpi{padding-bottom:6px}}
+
+/* edificio */
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+@media(max-width:900px){.two{grid-template-columns:1fr;gap:28px}}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+.facts div{padding:14px 12px 14px 0;border-bottom:1px solid var(--line)}
+.facts dt{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:2px 0 0;font-family:var(--serif);font-size:1.2rem}
+.facts small{display:block;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+.giro{margin:48px 0 0;position:relative;border-radius:4px;overflow:hidden;background:#ccd}.giro video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}.giro figcaption{position:absolute;inset:auto 0 0 0;padding:28px 14px 10px;font-size:.8rem;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+.mosaic{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:10px}
+.mosaic figure{margin:0;position:relative;overflow:hidden;border-radius:4px;background:#ccd;cursor:zoom-in}
+.mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.mosaic figure:hover img{transform:scale(1.035)}
+.mosaic figcaption{position:absolute;inset:auto 0 0 0;padding:28px 14px 10px;font-size:.8rem;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+.m1{grid-column:span 4;aspect-ratio:16/10}.m2{grid-column:span 2}.m3{grid-column:span 2;aspect-ratio:4/3}.m4{grid-column:span 2;aspect-ratio:4/3}.m5{grid-column:span 2;aspect-ratio:4/3}.m6{grid-column:span 3;aspect-ratio:16/10}.m7{grid-column:span 3;aspect-ratio:16/10}
+@media(max-width:760px){.mosaic{grid-template-columns:1fr 1fr}.mosaic figure{grid-column:span 1;aspect-ratio:4/3}.mosaic .m1,.mosaic .m6{grid-column:span 2;aspect-ratio:16/10}.mosaic .m7{grid-column:span 2}}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.cards{grid-template-columns:1fr}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:22px}
+.card svg{width:30px;height:30px;stroke:var(--accent);fill:none;stroke-width:1.5;margin-bottom:10px}
+.card ul{margin:10px 0 0;padding:0;list-style:none;font-size:.92rem;color:var(--muted)}
+.card li{padding:5px 0;border-top:1px solid var(--line)}
+.note{font-size:.8rem;color:var(--muted)}
+
+/* alloggi */
+.alt{background:var(--paper);border-block:1px solid var(--line)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.tab{border:1px solid var(--line);background:transparent;border-radius:99px;padding:9px 18px;font-size:.92rem}
+.tab[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.unit{display:none;grid-template-columns:1.25fr .75fr;gap:40px;align-items:start}
+.unit.on{display:grid}
+@media(max-width:900px){.unit.on{grid-template-columns:1fr;gap:24px}}
+.unit .pics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.unit .pics figure{margin:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff;cursor:zoom-in;aspect-ratio:4/3}
+.unit .pics figure.big{grid-column:span 2;aspect-ratio:16/10}
+.unit .pics img{width:100%;height:100%;object-fit:cover}
+.unit .pics img.plan{object-fit:contain;padding:8px}
+.ph{display:grid;place-items:center;text-align:center;color:#6b7b84;font-size:.82rem;cursor:default!important;
+  background:repeating-linear-gradient(135deg,#e9eef0 0 14px,#f3f6f7 14px 28px)}
+.ph b{display:block;font-family:var(--serif);font-size:1.1rem;font-weight:500;color:#40525c}
+.unit h3{font-size:1.9rem}
+.big-n{font-family:var(--serif);font-size:3.2rem;line-height:1;margin:14px 0 2px}
+.big-n small{font-size:1rem;color:var(--muted);font-family:var(--sans)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+td,th{padding:7px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:400}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+tr.tot td{font-weight:600;border-bottom:0}
+
+/* impianti */
+.dark{background:var(--night);color:var(--nightink)}
+.dark .eyebrow{color:#7fd0b6}
+.dark .lead{color:var(--nightmuted)}
+.viewer{border:1px solid var(--nightline);border-radius:8px;overflow:hidden;background:radial-gradient(120% 90% at 50% 10%,#17303d 0%,#0b151c 70%)}
+.viewer canvas{display:block;width:100%;height:min(70vh,640px);touch-action:pan-y;cursor:grab}
+.viewer canvas:active{cursor:grabbing}
+.vbar{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border-top:1px solid var(--nightline);background:var(--night2);align-items:center}
+.vbar .sep{flex-basis:100%;height:0}
+.chip{border:1px solid var(--nightline);background:transparent;color:var(--nightink);border-radius:99px;padding:6px 12px;font-size:.8rem;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.chip i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.chip[aria-pressed=false]{opacity:.38}
+.chip.sel{background:#e7eef1;color:#0e1a22;border-color:#e7eef1}
+.vlabel{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--nightmuted);margin-right:4px}
+.vhint{font-size:.78rem;color:var(--nightmuted);margin:10px 2px 0}
+.sys{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:28px 0 0}
+@media(max-width:900px){.sys{grid-template-columns:1fr 1fr}}
+.sysc{border:1px solid var(--nightline);border-radius:6px;padding:16px;background:var(--night2)}
+.sysc b{font-family:var(--serif);font-weight:500;font-size:1.9rem;display:block;line-height:1.1;font-variant-numeric:tabular-nums}
+.sysc span{font-size:.8rem;color:var(--nightmuted);display:block}
+.sysc .bar{height:3px;border-radius:2px;margin-bottom:12px}
+.checks{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;border-top:1px solid var(--nightline)}
+@media(max-width:900px){.checks{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.checks{grid-template-columns:1fr}}
+.check{padding:22px 22px 22px 0;border-bottom:1px solid var(--nightline)}
+.check b{font-family:var(--mono);font-size:2rem;font-weight:400;color:#7fd0b6;display:block}
+.check b.w{color:#f0c27a}
+.check span{font-size:.9rem;color:var(--nightmuted)}
+.dark h3.sub{margin:64px 0 6px;font-size:1.6rem}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+@media(max-width:900px){.strip{grid-template-columns:1fr 1fr}}
+.strip figure,.wall figure{margin:0;background:#fff;border-radius:4px;overflow:hidden;cursor:zoom-in;position:relative}
+.strip img,.wall img{width:100%;aspect-ratio:16/10;object-fit:contain;background:#fff;padding:6px}
+.strip figcaption{font-size:.76rem;color:#33434c;padding:6px 10px 9px;border-top:1px solid #e3e3e3;background:#fff}
+.layers{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:22px;align-items:start}
+@media(max-width:900px){.layers{grid-template-columns:1fr}}
+.dark table td,.dark table th{border-color:var(--nightline)}
+.dark table th{color:var(--nightmuted)}
+.dark td.n{font-family:var(--mono);font-size:.85rem;color:#7fd0b6}
+
+
+/* esplora */
+.espstage{position:relative}
+.esp canvas{height:min(74vh,720px);touch-action:none;cursor:grab;background:#cfdfe8 url(img/r_esterno_alto.jpg) center/cover}
+.esp.live canvas{background:#cfdfe8}
+.espact{position:absolute;inset:0;margin:auto;width:max-content;height:max-content;max-width:86%;background:rgba(14,26,34,.88);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:99px;padding:16px 30px;text-align:center;backdrop-filter:blur(6px)}
+.espact span{display:block;font-family:var(--serif);font-size:1.35rem}
+.espact small{display:block;font-size:.74rem;opacity:.75;margin-top:2px}
+.espact[hidden]{display:none}
+.espload,.espwhere,.esphint{position:absolute;left:50%;transform:translateX(-50%);background:rgba(14,26,34,.85);color:#fff;font-size:.8rem;padding:6px 14px;border-radius:99px;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.espload{top:12px}.espload[hidden]{display:none}
+.espwhere{top:12px;display:none}.esp.walk .espwhere:not(:empty){display:block}
+.esphint{bottom:14px;opacity:0;transition:opacity .4s;white-space:normal;text-align:center}.esphint.on{opacity:1}
+.e-exit{position:absolute;top:12px;right:12px;display:none}.esp.walk .e-exit{display:inline-flex}
+.esppad{position:absolute;right:14px;bottom:14px;display:none;grid-template-columns:repeat(3,46px);grid-template-rows:46px 46px;gap:6px}
+.esp.walk .esppad{display:grid}
+.esppad button{background:rgba(14,26,34,.72);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:10px;font-size:1rem;touch-action:none;user-select:none;-webkit-user-select:none}
+.esppad button[data-k=f]{grid-column:2;grid-row:1}.esppad button[data-k=l]{grid-column:1;grid-row:2}.esppad button[data-k=b]{grid-column:2;grid-row:2}.esppad button[data-k=r]{grid-column:3;grid-row:2}
+.espinfo{position:absolute;top:12px;left:12px;width:min(300px,calc(100% - 24px));background:rgba(255,253,249,.96);color:var(--ink);border-radius:8px;padding:16px 18px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.espinfo[hidden]{display:none}
+.espinfo small{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.espinfo h4{font-family:var(--serif);font-weight:500;font-size:1.35rem;margin:2px 0 4px}
+.espinfo b{font-family:var(--serif);font-weight:500;font-size:2rem;display:block;line-height:1.1}
+.espinfo span{display:block;font-size:.82rem;color:var(--muted);margin-top:4px}
+.espinfo .ar{font-size:.76rem;border-top:1px solid var(--line);padding-top:6px;margin-top:8px}
+.espinfo .x{position:absolute;top:8px;right:8px;background:none;border:0;font-size:1rem;color:var(--muted)}
+.espinfo .go{margin-top:12px;background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip.sm{padding:3px 10px;font-size:.74rem}
+.esp:fullscreen{display:flex;flex-direction:column;background:var(--night)}
+.esp:fullscreen .espstage{flex:1;min-height:0}.esp:fullscreen canvas{height:100%}
+@media(max-width:760px){.esp canvas{height:62vh}.espinfo{top:auto;bottom:12px}.esp.walk .esphint{bottom:124px;font-size:.74rem}.esp.walk .espwhere{left:12px;transform:none;max-width:calc(100% - 196px);top:12px;white-space:normal;border-radius:12px;font-size:.72rem;line-height:1.25}}
+
+/* documenti */
+.counts{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line);margin-bottom:44px}
+@media(max-width:900px){.counts{grid-template-columns:1fr 1fr}}
+.count{padding:18px 14px 18px 0;border-bottom:1px solid var(--line)}
+.count b{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,2.8rem);display:block;line-height:1.05;font-variant-numeric:tabular-nums}
+.count span{font-size:.84rem;color:var(--muted)}
+.folders{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:900px){.folders{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.folders{grid-template-columns:1fr}}
+.folder{background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.folder.open{grid-column:1/-1}
+.folder>button{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;width:100%;text-align:left;background:none;border:0;padding:16px 18px}
+.folder .num{font-family:var(--mono);font-size:.85rem;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:2px 6px}
+.folder .nm{font-family:var(--serif);font-size:1.12rem;display:block}
+.folder .tp{font-size:.76rem;color:var(--muted)}
+.folder .ct{font-family:var(--serif);font-size:1.5rem;color:var(--muted)}
+.files{display:none;padding:0 18px 18px;columns:3 260px;column-gap:24px;font-family:var(--mono);font-size:.74rem;line-height:1.9}
+.folder.open .files{display:block}
+.files div{break-inside:avoid;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.files i{font-style:normal;display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px}
+.files s{text-decoration:none;color:var(--muted);margin-left:6px}
+.t-relazione{background:#2f5d50}.t-codice{background:#b9772f}.t-disegno{background:#3f8fd6}.t-immagine{background:#8fb7dd}.t-risultati{background:#8a8f94}.t-dati{background:#7a5bb0}.t-pdf{background:#c44}.t-web{background:#c44}.t-modello{background:#222}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.78rem;color:var(--muted);margin:14px 0 0}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px}
+.wallhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:56px 0 18px}
+.wallhead h3{margin-right:12px;font-size:1.6rem}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+@media(max-width:520px){.wall{grid-template-columns:1fr 1fr}}
+.wall figure{border:1px solid var(--line)}
+.wall figcaption{font-size:.74rem;padding:6px 9px 8px;border-top:1px solid var(--line);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wall figcaption b{font-family:var(--mono);font-weight:400;color:var(--accent);margin-right:6px}
+.tab.sm{padding:5px 12px;font-size:.8rem}
+
+/* metodo */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);counter-reset:s}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.step{padding:18px 18px 18px 0;border-bottom:1px solid var(--line)}
+.step b{font-family:var(--mono);font-weight:400;font-size:.8rem;color:var(--accent)}
+.step h3{font-size:1.1rem;margin:2px 0 4px}
+.step p{font-size:.86rem;color:var(--muted);margin:0}
+.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:40px 0}
+@media(max-width:900px){.rules{grid-template-columns:1fr 1fr}}
+.rule{border-left:3px solid var(--accent);padding:4px 0 4px 14px}
+.rule b{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em}
+.rule p{margin:2px 0 0;font-size:.88rem;color:var(--muted)}
+.found{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.found{grid-template-columns:1fr}}
+.found .card b{font-family:var(--mono);font-size:.74rem;color:var(--accent2);font-weight:400}
+.found .card h3{margin:6px 0 8px;font-size:1.15rem}
+.found .card p{font-size:.9rem;color:var(--muted);margin:0}
+
+footer{background:var(--ink);color:#c9cfd3;padding:48px 0;font-size:.86rem}
+footer b{color:#fff}
+footer .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:760px){footer .wrap{grid-template-columns:1fr}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(8,12,15,.94);display:none;flex-direction:column}
+.lb.on{display:flex}
+.lb .stage{flex:1;min-height:0;overflow:auto;display:grid;place-items:center;padding:12px}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;background:#fff;border-radius:2px}
+.lb.zoom .stage{display:block}
+.lb.zoom img{max-width:none;max-height:none;width:auto}
+.lb .bar{display:flex;align-items:center;gap:10px;color:#fff;padding:10px 14px;font-size:.86rem}
+.lb .bar span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb button{background:rgba(255,255,255,.12);border:0;color:#fff;border-radius:99px;min-width:38px;height:38px;padding:0 12px;font-size:.95rem}
+.lb button:hover{background:rgba(255,255,255,.25)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav"><div class="wrap">
+  <a class="brand" href="#top"><b>Via Savani 11</b><span class="pill">demo</span></a>
+  <nav><a href="#esplora">Esplora</a><a href="#edificio">Edificio</a><a href="#alloggi">Alloggi</a><a href="#impianti">Impianti</a><a href="#documenti">Documenti</a><a href="#metodo">Metodo</a></nav>
+</div></header>
+
+<div class="hero" id="top"><div class="wrap">
+  <h1>Un condominio progettato <em>interamente</em> dall'intelligenza artificiale.</h1>
+  <p>Undici alloggi a Parma, seguiti dal lotto fino all'ultimo tubo: architettura, strutture, involucro, impianti, finiture e modelli 3D. Ogni numero è calcolato con codice, ogni ipotesi è dichiarata.</p>
+  <div class="kpis">
+    <div class="kpi"><b>11</b><span>alloggi su quattro piani, più l'interrato</span></div>
+    <div class="kpi"><b id="k-doc">270</b><span>documenti generati: relazioni, disegni, calcoli, dati, modelli</span></div>
+    <div class="kpi"><b id="k-km">9,59 km</b><span>di impianti tracciati in tre dimensioni</span></div>
+    <div class="kpi"><b>0</b><span>urti fra impianti diversi o contro le strutture, dopo il controllo</span></div>
+  </div>
+</div></div>
+
+<section id="edificio"><div class="wrap">
+  <div class="two">
+    <div class="sechead reveal">
+      <div class="eyebrow">L'edificio</div>
+      <h2>Quattro piani rivolti a sud, tutto elettrico.</h2>
+      <p class="lead">Un edificio in linea di 20,60 × 13,50 metri in via Primo Savani, a Parma. Scala e ascensore al centro del fronte nord, soggiorni e balconi a sud, camere a nord. Al piano terra tre alloggi con terrazza e giardino, in gran parte pensile sopra l'autorimessa.</p>
+      <p class="lead">Niente gas: due pompe di calore in copertura, pavimento radiante caldo e freddo, ventilazione meccanica in ogni alloggio, fotovoltaico condominiale con batteria.</p>
+    </div>
+    <dl class="facts reveal">
+      <div><dt>Alloggi</dt><dd>11<small>3 bilocali · 6 trilocali · 2 quadrilocali</small></dd></div>
+      <div><dt>Piani</dt><dd>4 + interrato<small>interpiano 3,15 m · locali alti 2,70 m</small></dd></div>
+      <div><dt>Struttura</dt><dd>Pareti in c.a.<small>solai a piastra da 25 cm · zona sismica 3</small></dd></div>
+      <div><dt>Involucro</dt><dd>Lana di roccia 16 cm<small>triplo vetro · frangisole su 56 finestre</small></dd></div>
+      <div><dt>Fotovoltaico</dt><dd>17,1 kWp<small>batteria da 10 kWh</small></dd></div>
+      <div><dt>Interrato</dt><dd>15 posti auto<small>7 posti moto · 11 cantine</small></dd></div>
+      <div><dt>Rinnovabili</dt><dd>83% stimato<small>80,6% contando i ventilatori</small></dd></div>
+      <div><dt>Classe energetica</dt><dd>Non calcolata<small>obiettivo del brief: A4</small></dd></div>
+    </dl>
+  </div>
+
+  <figure class="giro reveal">
+    <video src="video/video_edificio_giro.mp4?v=2" poster="img/r_esterno_sud-ovest.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Giro intorno all'edificio"></video>
+    <figcaption>Un giro intorno all'edificio, dal modello Blender</figcaption>
+  </figure>
+  <div class="mosaic" data-group="render">
+    <figure class="m1" data-full="img/r_esterno_sud-ovest.jpg"><img src="img/r_esterno_sud-ovest.jpg" alt="Vista da sud-ovest" loading="lazy"><figcaption>Vista da sud-ovest: balconi, vetrate dei soggiorni, giardini del piano terra</figcaption></figure>
+    <figure class="m2" data-full="img/r_esterno_nord-est.jpg"><img src="img/r_esterno_nord-est.jpg" alt="Vista da nord-est" loading="lazy"><figcaption>Fronte nord, verso la strada</figcaption></figure>
+    <figure class="m3" data-full="img/r_soggiorno.jpg"><img src="img/r_soggiorno.jpg" alt="Soggiorno del trilocale" loading="lazy"><figcaption>Trilocale, soggiorno verso sud</figcaption></figure>
+    <figure class="m4" data-full="img/r_cucina.jpg"><img src="img/r_cucina.jpg" alt="Cucina del trilocale" loading="lazy"><figcaption>Trilocale, cucina lineare da 3,60 m</figcaption></figure>
+    <figure class="m5" data-full="img/r_esterno_sud.jpg"><img src="img/r_esterno_sud.jpg" alt="Fronte sud" loading="lazy"><figcaption>Fronte sud dal giardino</figcaption></figure>
+    <figure class="m6" data-full="img/r_esterno_alto.jpg"><img src="img/r_esterno_alto.jpg" alt="Vista dall'alto" loading="lazy"><figcaption>Dall'alto: copertura, giardini pensili, parcheggi sul fronte strada</figcaption></figure>
+    <figure class="m7" data-full="img/r_copertura_alto.jpg"><img src="img/r_copertura_alto.jpg" alt="Copertura" loading="lazy"><figcaption>Copertura: 38 moduli fotovoltaici e due pompe di calore con schermo acustico</figcaption></figure>
+  </div>
+  <p class="note">Immagini indicative ricavate dai modelli Blender costruiti con i dati del progetto. Colori, verde e arredo sono ipotesi.</p>
+
+  <div class="cards">
+    <div class="card reveal"><svg viewBox="0 0 32 32"><path d="M4 26h24M7 26V10l9-5 9 5v16M12 26v-8h8v8"/></svg><h3>Comfort</h3><ul><li>Cappotto in lana di roccia, 22 cm in copertura</li><li>Finestre legno-alluminio con triplo vetro</li><li>Frangisole orientabili motorizzati</li><li>Pavimento radiante caldo e freddo</li></ul></div>
+    <div class="card reveal"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="5"/><path d="M16 3v5M16 24v5M3 16h5M24 16h5M7 7l3.500 3.500M21.500 21.500 25 25M25 7l-3.500 3.500M10.500 21.500 7 25"/></svg><h3>Energia</h3><ul><li>Due pompe di calore a propano R290</li><li>Fotovoltaico 17,1 kWp con batteria</li><li>Ventilazione con recupero di calore</li><li>Consumi contabilizzati per alloggio</li></ul></div>
+    <div class="card reveal"><svg viewBox="0 0 32 32"><path d="M5 27V5h22v22zM5 12h22M12 5v22M20 12v15"/></svg><h3>Struttura e silenzio</h3><ul><li>Pareti in calcestruzzo armato</li><li>Interrato a vasca impermeabile</li><li>Muri fra alloggi a doppio laterizio</li><li>Massetti galleggianti su tutti i piani</li></ul></div>
+    <div class="card reveal"><svg viewBox="0 0 32 32"><path d="M4 22h24M7 22l2-8h14l2 8M10 14l2-5h8l2 5"/><circle cx="10" cy="24" r="2"/><circle cx="22" cy="24" r="2"/></svg><h3>Servizi</h3><ul><li>Ascensore dall'interrato al terzo piano</li><li>15 posti auto predisposti alla ricarica</li><li>Fibra ottica fino all'alloggio</li><li>Recupero dell'acqua piovana</li></ul></div>
+  </div>
+</div></section>
+
+<section id="esplora" class="dark"><div class="wrap">
+  <div class="sechead reveal">
+    <div class="eyebrow">Esplora</div>
+    <h2>Entra nell'edificio.</h2>
+    <p class="lead">Il modello completo, generato dagli stessi dati del progetto: ruotalo, aprilo piano per piano, tocca una stanza per leggerne i dati, entra in un alloggio arredato e cammina. Accendi gli impianti per vedere dove passa ogni tubo.</p>
+  </div>
+  <div class="viewer esp" id="esp">
+    <div class="espstage">
+      <canvas aria-label="Modello tridimensionale navigabile dell'edificio"></canvas>
+      <button class="espact"><span>Apri il modello 3D</span><small>circa 6 MB · gli impianti si caricano quando li accendi</small></button>
+      <div class="espload" hidden></div>
+      <div class="espwhere"></div>
+      <button class="chip sel e-exit">Esci dalla camminata</button>
+      <div class="espinfo" hidden></div>
+      <div class="esphint"></div>
+      <div class="esppad"><button data-k="f" aria-label="Avanti">▲</button><button data-k="l" aria-label="Gira a sinistra">◀</button><button data-k="b" aria-label="Indietro">▼</button><button data-k="r" aria-label="Gira a destra">▶</button></div>
+    </div>
+    <div class="vbar e-piani"><span class="vlabel">Piano</span></div>
+    <div class="vbar"><span class="vlabel">Entra</span><button class="chip e-enter" data-go="1,5.45,7.75,2.45">nel trilocale</button><button class="chip e-enter" data-go="1,10.9,8.6,3.75">nel bilocale</button><button class="chip e-enter" data-go="3,5.45,7.75,2.45">nel quadrilocale</button></div>
+    <div class="vbar e-imp"><span class="vlabel">Impianti</span></div>
+    <div class="vbar e-retirow" hidden><span class="vlabel">Reti</span><span class="e-reti" style="display:contents"></span></div>
+    <div class="vbar"><span class="vlabel">Vista</span><button class="chip e-furn" aria-pressed="true">Arredo</button><button class="chip e-ceil" aria-pressed="false">Soffitto</button><button class="chip e-x" aria-pressed="false">Raggi X</button><button class="chip e-zi">Ingrandisci</button><button class="chip e-zo">Riduci</button><button class="chip e-fs">Schermo intero</button></div>
+  </div>
+  <p class="vhint">Trascina per ruotare, pizzica o usa la rotella per ingrandire. Scegli un piano per aprirlo senza soffitto e tocca una stanza: superficie, misure, prese e punti luce arrivano dai dati del progetto. L'arredo è dimostrativo.</p>
+</div></section>
+
+<section id="alloggi" class="alt"><div class="wrap">
+  <div class="sechead reveal">
+    <div class="eyebrow">Gli alloggi</div>
+    <h2>Tre tagli, disegnati fino alle porte.</h2>
+    <p class="lead">Ogni pianta ha porte con il verso di apertura, finestre, quote nette e superficie di ogni stanza. Una sedia a ruote simulata ha percorso ogni alloggio per verificare che i bagni visitabili lo siano davvero.</p>
+  </div>
+  <div class="tabs" role="tablist" id="utabs">
+    <button class="tab" role="tab" aria-selected="true" data-u="tri">Trilocale · 6</button>
+    <button class="tab" role="tab" aria-selected="false" data-u="bi">Bilocale · 3</button>
+    <button class="tab" role="tab" aria-selected="false" data-u="quad">Quadrilocale · 2</button>
+  </div>
+
+  <div class="unit on" id="u-tri" data-group="tri">
+    <div class="pics" data-al="alloggio_trilocale_W" data-plan="trilocale_W_PT-P2"></div>
+    <div>
+      <h3>Trilocale</h3>
+      <p class="note">Piani terra, primo e secondo · ali ovest ed est, speculari</p>
+      <div class="big-n">73,7 <small>m² utili</small></div>
+      <p>Soggiorno con cucina a sud, con alzante scorrevole da 3,60 m sul balcone. Due camere a nord, due bagni di cui uno visitabile.</p>
+      <table><tr><th>Locale</th><th class="n">m²</th></tr>
+        <tr><td>Soggiorno con cucina</td><td class="n">32,21</td></tr><tr><td>Camera 1</td><td class="n">14,48</td></tr><tr><td>Camera 2</td><td class="n">11,18</td></tr><tr><td>Bagno 1</td><td class="n">3,88</td></tr><tr><td>Bagno 2, visitabile</td><td class="n">3,38</td></tr><tr><td>Disimpegno e corridoio</td><td class="n">7,57</td></tr><tr><td>Vano tecnico</td><td class="n">1,00</td></tr>
+        <tr class="tot"><td>Balcone</td><td class="n">9,2</td></tr></table>
+    </div>
+  </div>
+
+  <div class="unit" id="u-bi" data-group="bi">
+    <div class="pics" data-al="alloggio_bilocale_M" data-plan="bilocale_M_PT-P2"></div>
+    <div>
+      <h3>Bilocale</h3>
+      <p class="note">Piani terra, primo e secondo · al centro, affaccio a sud</p>
+      <div class="big-n">45,6 <small>m² utili</small></div>
+      <p>Soggiorno con angolo cottura e camera matrimoniale, entrambi con alzante scorrevole a sud. Bagno visitabile con doccia a filo pavimento.</p>
+      <table><tr><th>Locale</th><th class="n">m²</th></tr>
+        <tr><td>Soggiorno con cucina</td><td class="n">23,18</td></tr><tr><td>Camera</td><td class="n">15,49</td></tr><tr><td>Bagno visitabile</td><td class="n">3,94</td></tr><tr><td>Ingresso</td><td class="n">2,96</td></tr>
+        <tr class="tot"><td>Balcone (piani 1 e 2)</td><td class="n">6,3</td></tr></table>
+    </div>
+  </div>
+
+  <div class="unit" id="u-quad" data-group="quad">
+    <div class="pics" data-al="alloggio_quadrilocale_P3-W" data-plan="quadrilocale_P3-W" data-plan2="quadrilocale_P3-E"></div>
+    <div>
+      <h3>Quadrilocale</h3>
+      <p class="note">Piano terzo · due alloggi che si dividono tutto il piano</p>
+      <div class="big-n">96 <small>m² utili</small></div>
+      <p>La pianta del trilocale più una terza camera a sud. A ovest con cabina armadio, a est con bagno-lavanderia.</p>
+      <table><tr><th>Locale</th><th class="n">m²</th></tr>
+        <tr><td>Soggiorno con cucina</td><td class="n">32,21</td></tr><tr><td>Camera 1</td><td class="n">14,48</td></tr><tr><td>Camera 2</td><td class="n">11,18</td></tr><tr><td>Camera 3</td><td class="n">15,27</td></tr><tr><td>Due bagni</td><td class="n">7,26</td></tr><tr><td>Cabina armadio (ovest)</td><td class="n">4,46</td></tr><tr><td>Bagno-lavanderia (est)</td><td class="n">2,85</td></tr>
+        <tr class="tot"><td>Balcone</td><td class="n">9,2</td></tr></table>
+    </div>
+  </div>
+</div></section>
+
+<section id="impianti" class="dark"><div class="wrap">
+  <div class="sechead reveal">
+    <div class="eyebrow">La precisione</div>
+    <h2>Ogni tubo e ogni cavo ha un percorso.</h2>
+    <p class="lead">Dal contatore o dalla centrale fino all'ultima presa: <span id="i-tratti">1.580</span> tratti e <span id="i-nodi">1.302</span> nodi tracciati in tre dimensioni, con quota, diametro e materiale. Quello che vedi qui sotto non è un'illustrazione: sono i dati veri del progetto, disegnati dal tuo browser.</p>
+  </div>
+
+  <div class="viewer">
+    <canvas id="cv" aria-label="Modello tridimensionale dei percorsi degli impianti"></canvas>
+    <div class="vbar" id="vsys"><span class="vlabel">Impianti</span></div>
+    <div class="vbar" id="vfl"><span class="vlabel">Piano</span></div>
+    <div class="vbar" id="vview"><span class="vlabel">Vista</span>
+      <button class="chip" data-v="-0.65,0.5">Assonometria</button><button class="chip" data-v="0,1.5708">Dall'alto</button><button class="chip" data-v="0,0.02">Da sud</button><button class="chip" data-v="-1.5708,0.02">Da ovest</button>
+      <button class="chip" data-z="1.25">Ingrandisci</button><button class="chip" data-z="0.8">Riduci</button><button class="chip" id="vrot" aria-pressed="true">Rotazione</button>
+    </div>
+  </div>
+  <p class="vhint">Trascina per ruotare. Scegli un piano per vedere le serpentine del pavimento radiante, i corrugati elettrici e i canali della ventilazione stanza per stanza.</p>
+
+  <div class="sys" id="sys"></div>
+
+  <div class="checks">
+    <div class="check"><b>0</b><span>urti fra impianti diversi. Alla prima passata erano 414 coppie di tratti: tutte corrette.</span></div>
+    <div class="check"><b>0</b><span>tratti dentro pareti o pilastri in calcestruzzo armato, o contro una trave ribassata.</span></div>
+    <div class="check"><b>0</b><span>scatole elettriche in pareti vietate, punti dentro una doccia o nel vano di una porta.</span></div>
+    <div class="check"><b>406</b><span>incroci nello strato da 8 cm sotto il pavimento. Impilamento massimo 6,6 cm: nessuno fuori spessore.</span></div>
+    <div class="check"><b>1%</b><span>di differenza fra i montanti elettrici misurati sul tracciato (319 m) e quelli calcolati prima dalla disciplina elettrica (321 m).</span></div>
+    <div class="check"><b class="w">97</b><span>accostamenti sotto i 2 cm da sfalsare in posa, e 6 conflitti lasciati aperti e dichiarati per il tecnico.</span></div>
+  </div>
+
+  <h3 class="sub">Dentro il pavimento e sopra il controsoffitto</h3>
+  <div class="layers">
+    <div>
+      <p class="lead" style="font-size:1rem">Ogni strato ha una quota assegnata, misurata dal pavimento finito. Il controllo verifica che ciò che si incrocia stia nello spessore disponibile.</p>
+      <table>
+        <tr><th>Dove</th><th>Che cosa passa</th><th class="n">Quota asse</th></tr>
+        <tr><td>Massetto 5 cm</td><td>serpentine radianti Ø17, passo 15 cm</td><td class="n">−0,050</td></tr>
+        <tr><td>Alleggerito 8 cm</td><td>corrugati Ø20–32, acqua, scarichi delle docce</td><td class="n">−0,140</td></tr>
+        <tr><td>Contropareti dei bagni</td><td>collettore di scarico DE110, dorsali d'acqua</td><td class="n">+0,13 … +0,52</td></tr>
+        <tr><td>Sopra il controsoffitto</td><td>corrugati, condensa, canali della ventilazione</td><td class="n">+2,435 … +2,66</td></tr>
+        <tr><td>Soffitto dell'interrato</td><td>passerelle, collettori, dorsali del caldo</td><td class="n">−0,33 … −0,76</td></tr>
+      </table>
+    </div>
+    <div class="strip" style="grid-template-columns:1fr;margin:0" data-group="imp0">
+      <figure data-full="img/d_14_sezione_pacchetto_pavimento_controsoffitto.png"><img src="img/d_14_sezione_pacchetto_pavimento_controsoffitto_m.jpg" style="aspect-ratio:2/1" alt="Sezione del pacchetto di pavimento" loading="lazy"><figcaption>Sezione tipo: pacchetto di pavimento e controsoffitto</figcaption></figure>
+    </div>
+  </div>
+
+  <h3 class="sub">Gli impianti nel modello Blender</h3>
+  <p class="lead" style="font-size:1rem">Ogni tratto del tracciato è diventato un oggetto 3D con le sue proprietà: alloggio, piano, diametro, posa, lunghezza.</p>
+  <div class="strip" id="blimp" data-group="blimp"></div>
+
+  <h3 class="sub">Le tavole degli impianti</h3>
+  <p class="lead" style="font-size:1rem">Diciannove tavole generate dagli stessi dati del modello qui sopra. Tocca per ingrandire.</p>
+  <div class="strip" id="impstrip" data-group="imp"></div>
+</div></section>
+
+<section id="documenti"><div class="wrap">
+  <div class="sechead reveal">
+    <div class="eyebrow">La quantità</div>
+    <h2>Tutto il progetto, cartella per cartella.</h2>
+    <p class="lead">Una disciplina per volta, come in uno studio di progettazione. Ogni cartella contiene la relazione, il codice dei calcoli con i suoi risultati e i disegni. Dopo ogni disciplina, un coordinamento cerca i conflitti con le altre.</p>
+  </div>
+  <div class="counts" id="counts"></div>
+  <div class="folders" id="folders"></div>
+  <div class="legend" id="legend"></div>
+
+  <div class="wallhead"><h3>I disegni</h3><div class="tabs" id="wtabs" style="margin:0"></div></div>
+  <div class="wall" id="wall" data-group="wall"></div>
+</div></section>
+
+<section id="metodo" class="alt"><div class="wrap">
+  <div class="sechead reveal">
+    <div class="eyebrow">Il metodo</div>
+    <h2>Niente numeri a memoria. E gli errori si scrivono.</h2>
+    <p class="lead">Il progetto è una prova per capire fin dove arriva un'intelligenza artificiale. Per questo ogni numero porta un'etichetta, ogni calcolo è eseguito con codice e ricontrollato, e un registro unico tiene decisioni, vincoli, ipotesi ed errori.</p>
+  </div>
+  <div class="rules">
+    <div class="rule"><b>NORMA</b><p>Riferimento letto e verificato con una ricerca, mai citato a memoria.</p></div>
+    <div class="rule"><b>CALCOLO</b><p>Eseguito con codice, con formule e unità, e ricontrollato con un secondo metodo.</p></div>
+    <div class="rule"><b>STIMA</b><p>Ordine di grandezza dichiarato come tale.</p></div>
+    <div class="rule"><b>IPOTESI</b><p>Dato mancante assunto in modo prudente e annotato nel registro.</p></div>
+  </div>
+  <div class="counts" id="regcounts"></div>
+
+  <h3 style="font-size:1.6rem;margin:8px 0 18px">Sedici passaggi, dal lotto al modello 3D</h3>
+  <div class="steps">
+    <div class="step"><b>00</b><h3>Lotto e brief</h3><p>Un lotto vero in vendita a Parma: 1.596 m².</p></div>
+    <div class="step"><b>01</b><h3>Norme e vincoli</h3><p>Piano urbanistico, distanze, altezze, parcheggi, sismica, energia.</p></div>
+    <div class="step"><b>02</b><h3>Architettura</h3><p>Griglia, alloggi, scala, cavedi, autorimessa.</p></div>
+    <div class="step"><b>03</b><h3>Terreno e fondazioni</h3><p>Tre scenari dichiarati, platea e vasca impermeabile.</p></div>
+    <div class="step"><b>04</b><h3>Strutture</h3><p>Schema a pareti, carichi, predimensionamento, fori nei solai.</p></div>
+    <div class="step"><b>05</b><h3>Involucro</h3><p>Stratigrafie, 56 finestre, schermature, ponti termici, acustica.</p></div>
+    <div class="step"><b>06</b><h3>Acqua e scarichi</h3><p>Colonne, pendenze, acque piovane, laminazione.</p></div>
+    <div class="step"><b>07</b><h3>Caldo, freddo, aria</h3><p>Pompe di calore, radiante, ventilazione, centrale.</p></div>
+    <div class="step"><b>08</b><h3>Elettrico e speciali</h3><p>Quadri, montanti, punti per stanza, fotovoltaico, dati.</p></div>
+    <div class="step"><b>09</b><h3>Finiture e arredo</h3><p>Capitolato per ambiente e arredo tipo verificato.</p></div>
+    <div class="step"><b>10</b><h3>Costi</h3><p>Computo metrico e conto economico con doppio metodo.</p></div>
+    <div class="step"><b>11</b><h3>Capitolato e brochure</h3><p>Descrizione per chi abita, in parole semplici.</p></div>
+    <div class="step"><b>12</b><h3>Rendering</h3><p>Modello dai dati del registro, esterni e interni.</p></div>
+    <div class="step"><b>13</b><h3>Piante con porte</h3><p>Porte, finestre e percorsi di una sedia a ruote simulata.</p></div>
+    <div class="step"><b>14</b><h3>Percorsi degli impianti</h3><p>9,59 km tracciati in 3D e controllati per interferenze.</p></div>
+    <div class="step"><b>15</b><h3>Modelli Blender</h3><p>Edificio, alloggi arredati, impianti. In corso.</p></div>
+  </div>
+  <p class="note" style="margin:14px 0 48px"><b>99 · Coordinamento.</b> Ripetuto dopo ogni disciplina tecnica: dieci relazioni che confrontano le scelte di tutti e aggiornano la tabella dei vincoli.</p>
+
+  <h3 style="font-size:1.6rem;margin:0 0 18px">Cose che i controlli hanno trovato</h3>
+  <div class="found">
+    <div class="card"><b>E09.1 · arredo</b><h3>Una camera senza porta possibile</h3><p>La camera 1 dei trilocali era passata da sei discipline senza che nessuna verificasse come entrarci. L'ha trovata il controllo automatico dell'arredo: è nato un corridoio.</p></div>
+    <div class="card"><b>E13.1 · piante</b><h3>Il bagno visitabile che non lo era</h3><p>Una sedia a ruote simulata, che si muove davvero, non raggiungeva il WC. Quattro ritocchi minimi, senza spostare un cavedio, e la verifica passa.</p></div>
+    <div class="card"><b>E14.1 · impianti</b><h3>414 urti alla prima passata</h3><p>Il primo tracciato aveva 414 coppie di tratti in collisione. Il controllo geometrico le ha elencate una per una: ora sono zero.</p></div>
+    <div class="card"><b>E08.4 · elettrico</b><h3>Un montante troppo sottile</h3><p>Il calcolo alloggio per alloggio ha trovato una caduta di tensione del 2,07% al terzo piano: cavo portato da 10 a 16 mm².</p></div>
+    <div class="card"><b>E08.6 · coordinamento</b><h3>La vasca che isola la terra</h3><p>La vasca impermeabile delle fondazioni isola i ferri della platea: niente dispersore di fondazione. Serviva un anello di terra, e nessuno l'aveva notato.</p></div>
+    <div class="card"><b>E12.2 · rendering</b><h3>Difetti visibili solo guardando</h3><p>Normali invertite e un vetro che bloccava il sole: si sono visti solo nelle prove di rendering. Da allora ogni immagine viene guardata prima di essere consegnata.</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div><b>Via Savani 11</b> è un nome di fantasia per il «Condominio di prova»: un progetto dimostrativo sviluppato con l'intelligenza artificiale, da far giudicare a un tecnico. Sito dimostrativo del 14/11/2026.</div>
+  <div><b>Preliminare, da verificare e firmare.</b> Non è un progetto esecutivo e non sostituisce i professionisti abilitati. Non è un'offerta di vendita. Percorsi degli impianti, colori, arredo e orientamento sono ipotesi dichiarate nel registro del progetto.</div>
+</div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <div class="bar"><span id="lbcap"></span><button id="lbz" title="Ingrandisci">⊕</button><button id="lbp" title="Precedente">‹</button><button id="lbn" title="Successiva">›</button><button id="lbx" title="Chiudi">✕</button></div>
+  <div class="stage"><img id="lbimg" alt=""></div>
+</div>
+
+<script src="dati/impianti.js"></script>
+<script src="dati/modello.js"></script>
+<script src="dati/documenti.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var it=function(n,d){return n.toLocaleString('it-IT',{minimumFractionDigits:d||0,maximumFractionDigits:d||0})};
+var el=function(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+
+/* nav */
+var nav=$('#nav');var onS=function(){nav.classList.toggle('solid',window.scrollY>window.innerHeight*0.7)};
+window.addEventListener('scroll',onS,{passive:true});onS();
+
+/* reveal */
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});$$('.reveal').forEach(function(e){io.observe(e)})}
+else $$('.reveal').forEach(function(e){e.classList.add('in')});
+
+/* tabs alloggi */
+$$('#utabs .tab').forEach(function(b){b.onclick=function(){$$('#utabs .tab').forEach(function(x){x.setAttribute('aria-selected',x===b)});$$('.unit').forEach(function(u){u.classList.toggle('on',u.id==='u-'+b.dataset.u)})}});
+
+var I=window.IMPIANTI, D=window.DOCUMENTI;
+
+/* ---------- documenti ---------- */
+if(D){
+  $('#k-doc').textContent=it(D.totale);
+  var T=D.tipi, cs=[[D.totale,'documenti in '+D.cartelle.length+' cartelle'],[(T.disegno||0)+(T.immagine||0),'disegni e immagini'],[D.righe_py,'righe di codice Python per calcoli e disegni'],[D.parole_md,'parole di relazioni tecniche'],[T.risultati||0,'file di risultati dei calcoli']];
+  cs.forEach(function(c){$('#counts').appendChild(el('div','count','<b>'+it(c[0])+'</b><span>'+c[1]+'</span>'))});
+  var R=D.registro;[[R.conflitti,'conflitti fra discipline tracciati nel registro'],[R.verifiche,'verifiche lasciate al professionista'],[R.ipotesi,'ipotesi dichiarate'],[R.errori,'errori e limiti annotati'],[R.parole,'parole nel registro unico del progetto']].forEach(function(c){$('#regcounts').appendChild(el('div','count','<b>'+it(c[0])+'</b><span>'+c[1]+'</span>'))});
+  var tc=function(t){return 't-'+t.split(' ')[0]};
+  var kb=function(b){return b>1e6?it(b/1e6,1)+' MB':it(Math.max(1,Math.round(b/1024)))+' kB'};
+  D.cartelle.forEach(function(c){
+    var cnt={};c.files.forEach(function(f){cnt[f[1]]=(cnt[f[1]]||0)+1});
+    var tp=Object.keys(cnt).map(function(k){return cnt[k]+' '+k}).join(' · ');
+    var f=el('div','folder');
+    var b=el('button',null,'<span class="num">'+c.n+'</span><span><span class="nm">'+c.nome+'</span><span class="tp">'+tp+'</span></span><span class="ct">'+c.files.length+'</span>');
+    b.setAttribute('aria-expanded','false');
+    var fl=el('div','files');var built=false;
+    b.onclick=function(){var o=!f.classList.contains('open');$$('.folder.open').forEach(function(x){x.classList.remove('open')});
+      if(o){if(!built){c.files.forEach(function(x){fl.appendChild(el('div',null,'<i class="'+tc(x[1])+'"></i>'+x[0]+'<s>'+kb(x[2])+'</s>'))});built=true}f.classList.add('open')}
+      b.setAttribute('aria-expanded',o)};
+    f.appendChild(b);f.appendChild(fl);$('#folders').appendChild(f);
+  });
+  ['relazione','codice','risultati','disegno','immagine','dati','modello 3D'].forEach(function(t){$('#legend').appendChild(el('span',null,'<i class="'+tc(t)+'"></i>'+t))});
+
+  /* muro dei disegni */
+  var ths=[];D.disegni.forEach(function(d){if(ths.indexOf(d.th)<0)ths.push(d.th)});
+  var names={};D.cartelle.forEach(function(c){names[c.n]=c.nome});
+  var wall=$('#wall'),wt=$('#wtabs');
+  var fill=function(th){wall.innerHTML='';D.disegni.forEach(function(d){if(th&&d.th!==th)return;var f=el('figure',null,'<img src="img/'+d.m+'" alt="" loading="lazy"><figcaption><b>'+d.th+'</b>'+d.t+'</figcaption>');f.dataset.full='img/'+d.f;f.dataset.cap=d.th+' · '+d.t;wall.appendChild(f)})};
+  var mk=function(lab,th){var b=el('button','tab sm',lab);b.setAttribute('aria-selected',!th);b.onclick=function(){$$('.tab',wt).forEach(function(x){x.setAttribute('aria-selected',x===b)});fill(th)};wt.appendChild(b)};
+  mk('Tutti · '+D.disegni.length,null);ths.forEach(function(t){mk(t+' '+(names[t]||''),t)});fill(null);
+  var st=$('#impstrip');D.disegni.forEach(function(d){if(d.th!=='14'||/sezione/.test(d.f))return;var f=el('figure',null,'<img src="img/'+d.m+'" alt="" loading="lazy"><figcaption>'+d.t+'</figcaption>');f.dataset.full='img/'+d.f;f.dataset.cap=d.t;st.appendChild(f)});
+}
+
+
+/* ---------- immagini dei modelli Blender ---------- */
+if(D&&D.blender){
+  var ord=function(v){return /^asso/.test(v)?0:(/^interno/.test(v)?1:(/^pianta/.test(v)?3:2))};
+  var fig=function(b,cls){var f=el('figure',cls||null,'<img src="img/'+b.f+'" alt="'+b.v+'" loading="lazy">');f.dataset.full='img/'+b.f;f.dataset.cap=b.v.charAt(0).toUpperCase()+b.v.slice(1);return f};
+  var ph=function(t,cls){return el('figure','ph '+(cls||''),'<div><b>'+t+'</b>immagine in arrivo</div>')};
+  $$('.pics[data-al]').forEach(function(pc){
+    var L=D.blender.filter(function(b){return b.k===pc.dataset.al}).sort(function(a,b){return ord(a.v)-ord(b.v)});
+    var pl=function(n){var f=el('figure',null,'<img class="plan" src="img/d_13_'+n+'_m.jpg" alt="Pianta" loading="lazy">');f.dataset.full='img/d_13_'+n+'.png';f.dataset.cap='Pianta con porte e finestre';return f};
+    if(L.length)pc.appendChild(fig(L[0],'big'));else pc.appendChild(ph('Vista 3D','big'));
+    L.slice(1).forEach(function(b){pc.appendChild(fig(b))});
+    if(!L.some(function(b){return /^interno/.test(b.v)}))pc.appendChild(ph('Interni'));
+    pc.appendChild(pl(pc.dataset.plan));if(pc.dataset.plan2)pc.appendChild(pl(pc.dataset.plan2));
+  });
+  var bi=$('#blimp');[['impianti_elettrico','Elettrico e segnali'],['impianti_clima','Caldo, freddo e ventilazione'],['impianti_acqua_scarichi','Acqua e scarichi']].forEach(function(s){
+    var L=D.blender.filter(function(b){return b.k===s[0]}).sort(function(a,b){return ord(a.v)-ord(b.v)});
+    if(!L.length){var p=ph(s[1]);p.style.aspectRatio='16/10';bi.appendChild(p);return}
+    L.forEach(function(b){var f=el('figure',null,'<img src="img/'+b.f+'" alt="" loading="lazy" style="object-fit:cover;padding:0"><figcaption>'+s[1]+' · '+b.v+'</figcaption>');f.dataset.full='img/'+b.f;f.dataset.cap=s[1]+' · '+b.v;bi.appendChild(f)});
+  });
+}
+
+/* ---------- lightbox ---------- */
+var lb=$('#lb'),lbi=$('#lbimg'),set=[],cur=0;
+var show=function(i){cur=(i+set.length)%set.length;var f=set[cur];lb.classList.remove('zoom');lbi.src=f.dataset.full;var c=f.dataset.cap||(f.querySelector('figcaption')||{}).textContent||(f.querySelector('img')||{}).alt||'';$('#lbcap').textContent=c};
+document.addEventListener('click',function(e){var f=e.target.closest&&e.target.closest('figure[data-full]');if(!f)return;var g=f.closest('[data-group]');set=g?$$('figure[data-full]',g):[f];lb.classList.add('on');document.body.style.overflow='hidden';show(set.indexOf(f))});
+var close=function(){lb.classList.remove('on');document.body.style.overflow='';lbi.removeAttribute('src')};
+$('#lbx').onclick=close;$('#lbp').onclick=function(){show(cur-1)};$('#lbn').onclick=function(){show(cur+1)};$('#lbz').onclick=function(){lb.classList.toggle('zoom')};
+$('.stage',lb).onclick=function(e){if(e.target===e.currentTarget)close()};
+document.addEventListener('keydown',function(e){if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});
+
+/* ---------- modello 3D degli impianti ---------- */
+if(I){
+  $('#k-km').textContent=it(I.tot.L/1000,2)+' km';$('#i-tratti').textContent=it(I.tot.tratti);$('#i-nodi').textContent=it(I.tot.nodi);
+  var cv=$('#cv'),cx=cv.getContext('2d'),W=0,H=0,dpr=1;
+  var yaw=-0.65,pitch=0.5,zoom=1,floor=-1,spin=!window.matchMedia('(prefers-reduced-motion: reduce)').matches,vis=true,dirty=true;
+  var on={};I.sistemi.forEach(function(s){on[s.id]=true});
+  var Q=I.geo.quote,S=I.geo.sagoma;
+  var CEN=[10.3,-6.75,5.2];
+  var fz=function(){ if(floor<0)return null; if(floor===0)return[-4.2,0.25]; if(floor===5)return[Q[4]-0.05,99]; return[Q[floor-1]-0.2,Q[floor]-0.25] };
+  var ca,sa,cp,sp,sc,ox,oy,cen;
+  var setup=function(){ca=Math.cos(yaw);sa=Math.sin(yaw);cp=Math.cos(pitch);sp=Math.sin(pitch);
+    var r=fz();cen=CEN.slice();var ext=34;
+    if(r){cen[2]=floor===0?-1.5:(floor===5?Q[4]+.5:(r[0]+r[1])/2+.3);ext=floor===0?40:23.5}
+    sc=Math.min(W/ext,H/(ext*0.72))*zoom;ox=W/2;oy=H/2};
+  var px=function(x,y,z){var X=x-cen[0],Y=-y-cen[1],Z=z-cen[2];var x1=X*ca-Y*sa,y1=X*sa+Y*ca;return[ox+x1*sc,oy-(Z*cp+y1*sp)*sc]};
+  var rect=function(r,z){var a=px(r[0],r[1],z),b=px(r[2],r[1],z),c=px(r[2],r[3],z),d=px(r[0],r[3],z);cx.moveTo(a[0],a[1]);cx.lineTo(b[0],b[1]);cx.lineTo(c[0],c[1]);cx.lineTo(d[0],d[1]);cx.closePath()};
+  var draw=function(){
+    dirty=false;setup();cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);cx.lineJoin='round';cx.lineCap='round';
+    var r=fz();
+    /* edificio */
+    cx.lineWidth=1;cx.strokeStyle='rgba(200,225,235,.22)';cx.fillStyle='rgba(200,225,235,.035)';
+    if(!r){
+      cx.beginPath();I.geo.interrato.forEach(function(b){rect(b,-3.0)});cx.stroke();
+      Q.forEach(function(z){cx.beginPath();rect(S,z);cx.fill();cx.stroke()});
+      cx.beginPath();[[S[0],S[1]],[S[2],S[1]],[S[2],S[3]],[S[0],S[3]]].forEach(function(c){var a=px(c[0],c[1],-3),b=px(c[0],c[1],Q[4]);cx.moveTo(a[0],a[1]);cx.lineTo(b[0],b[1])});cx.stroke();
+      cx.strokeStyle='rgba(200,225,235,.12)';cx.beginPath();Q.forEach(function(z){rect(I.geo.nucleo,z)});cx.stroke();
+    } else {
+      var z0=floor===0?-3.0:(floor===5?Q[4]:Q[floor-1]);
+      cx.beginPath();if(floor===0)I.geo.interrato.forEach(function(b){rect(b,z0)});else rect(S,z0);cx.fill();cx.stroke();
+      if(floor>0&&floor<5){cx.fillStyle='rgba(200,225,235,.28)';cx.beginPath();I.geo.pareti.forEach(function(b){rect(b,z0)});cx.fill();
+        cx.strokeStyle='rgba(200,225,235,.3)';cx.beginPath();rect(I.geo.nucleo,z0);Object.keys(I.geo.cavedi).forEach(function(k){rect(I.geo.cavedi[k],z0)});cx.stroke()}
+    }
+    /* impianti */
+    cx.globalAlpha=r?0.95:0.8;
+    I.sistemi.forEach(function(s){ if(!on[s.id])return; cx.strokeStyle=s.col;
+      for(var pass=0;pass<2;pass++){ cx.lineWidth=pass?Math.max(1.8,sc*0.09):(r?1.1:0.7); cx.beginPath();
+        for(var i=0;i<s.linee.length;i++){var l=s.linee[i]; if((l[1]>=60)!==!!pass)continue;
+          if(r){ if(l[0]>=6){ /* verticali ed esterni: tengo solo la parte nel piano */ } else if(l[0]!==floor)continue; }
+          var first=true;
+          for(var j=2;j<l.length;j+=3){ var z=l[j+2];
+            if(r&&(z<r[0]||z>r[1])){first=true;continue}
+            var p=px(l[j],l[j+1],z); if(first){cx.moveTo(p[0],p[1]);first=false}else cx.lineTo(p[0],p[1]); }
+        } cx.stroke(); } });
+    cx.globalAlpha=1;
+    /* etichette dei piani */
+    if(!r){cx.fillStyle='rgba(200,225,235,.6)';cx.font='11px ui-monospace,Menlo,monospace';var cr=[[S[0],S[1]],[S[2],S[1]],[S[2],S[3]],[S[0],S[3]]].sort(function(a,b){return px(b[0],b[1],0)[0]-px(a[0],a[1],0)[0]})[0];['PT','P1','P2','P3','copertura'].forEach(function(n,i){var p=px(cr[0],cr[1],Q[i]);cx.fillText(n,p[0]+8,p[1]+4)});var p=px(S[2],25.5,-3);cx.fillText('interrato',p[0]+8,p[1]+4)}
+  };
+  var size=function(){var b=cv.getBoundingClientRect();dpr=Math.min(2,window.devicePixelRatio||1);W=b.width;H=b.height;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);dirty=true};
+  window.addEventListener('resize',size);size();
+  var last=0;var loop=function(t){ if(vis&&spin&&pitch<1.5){yaw+=Math.min(50,t-last)*0.00012;dirty=true} if(dirty)draw(); last=t;requestAnimationFrame(loop)};requestAnimationFrame(loop);
+  if('IntersectionObserver' in window)new IntersectionObserver(function(e){vis=e[0].isIntersecting},{threshold:0}).observe(cv);
+  var rotB=$('#vrot');var setSpin=function(v){spin=v;rotB.setAttribute('aria-pressed',v)};setSpin(spin);rotB.onclick=function(){setSpin(!spin)};
+  /* trascinamento */
+  var drag=null;
+  cv.addEventListener('pointerdown',function(e){drag=[e.clientX,e.clientY,yaw,pitch,e.pointerType];try{cv.setPointerCapture(e.pointerId)}catch(_){ }setSpin(false)});
+  cv.addEventListener('pointermove',function(e){if(!drag)return;yaw=drag[2]+(e.clientX-drag[0])*0.008;if(drag[4]!=='touch')pitch=Math.max(0.02,Math.min(1.5708,drag[3]+(e.clientY-drag[1])*0.006));dirty=true});
+  ['pointerup','pointercancel'].forEach(function(n){cv.addEventListener(n,function(){drag=null})});
+  /* comandi */
+  var vs=$('#vsys');I.sistemi.forEach(function(s){var b=el('button','chip','<i style="background:'+s.col+'"></i>'+s.nome);b.setAttribute('aria-pressed','true');b.onclick=function(){on[s.id]=!on[s.id];b.setAttribute('aria-pressed',on[s.id]);dirty=true};vs.appendChild(b)});
+  var vf=$('#vfl');[['Tutto l\'edificio',-1],['Interrato',0],['Piano terra',1],['Primo',2],['Secondo',3],['Terzo',4],['Copertura',5]].forEach(function(f){var b=el('button','chip'+(f[1]===-1?' sel':''),f[0]);b.onclick=function(){floor=f[1];$$('.chip',vf).forEach(function(x){x.classList.toggle('sel',x===b)});if(floor>=0){yaw=0;pitch=1.1;setSpin(false)}dirty=true};vf.appendChild(b)});
+  $$('#vview [data-v]').forEach(function(b){b.onclick=function(){var v=b.dataset.v.split(',');yaw=+v[0];pitch=+v[1];setSpin(false);dirty=true}});
+  $$('#vview [data-z]').forEach(function(b){b.onclick=function(){zoom=Math.max(0.5,Math.min(6,zoom*(+b.dataset.z)));dirty=true}});
+  /* schede dei sistemi */
+  var sy=$('#sys');I.sistemi.forEach(function(s){var top=Object.keys(s.reti).slice(0,3).map(function(k){return k+' '+it(s.reti[k])+' m'}).join(' · ');
+    sy.appendChild(el('div','sysc','<div class="bar" style="background:'+s.col+'"></div><b>'+it(s.L)+' m</b><span>'+s.nome+'</span><span style="margin-top:8px">'+it(s.tratti)+' tratti · '+it(s.nodi)+' nodi</span><span style="margin-top:4px;opacity:.75">'+top+'</span>'))});
+}
+})();
+</script>
+<script src="lib/three.min.js"></script>
+<script src="lib/OrbitControls.js"></script>
+<script src="lib/GLTFLoader.js"></script>
+<script src="lib/BufferGeometryUtils.js"></script>
+<script src="lib/RoomEnvironment.js"></script>
+<script src="esplora.js"></script>
+</body>
+</html>
