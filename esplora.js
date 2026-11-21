@@ -55,8 +55,7 @@
     M.pilastri.forEach(function (p) { if (p[5] <= z + 0.1 && p[6] >= z + HN - 0.1 && p[2] > 0.5 && p[4] < tp.ysud - 0.5 && p[1] > 0.5 && p[3] < S[2] - 0.5) P.push(bx(p[1] - 0.005, p[2] - 0.005, p[3] + 0.005, p[4] + 0.005, z, z + HN)); });
     var add = function (gs, m, G) { if (!gs.length) return; var o = mesh(gs, m); o.userData.f = fi; G.add(o); };
     add(W, MW, inn); add(Lw, MW, inn); add(P, MPIL, inn); Object.keys(F).forEach(function (k) { add(F[k], MFL[k] || MFL.serv, inn); }); add(Cg, MCEIL, ceilG);
-    var byT = {}; (M.furn[pp[0]] || []).forEach(function (f) { var k = /^cucina/.test(f[6]) ? 'cucina' : f[6]; (byT[k] = byT[k] || []).push(bx(f[0], f[1], f[3], f[4], z + f[2], z + Math.max(f[5], f[2] + 0.02))); });
-    Object.keys(byT).forEach(function (k) { add(byT[k], fmat(k), arr); });
+    /* arredo: modelli veri caricati da modelli/arredo_*.glb (vedi start) */
   });
   M.impianti.forEach(function (s, si) {
     var v = []; s.linee.forEach(function (l) { for (var i = 1; i + 5 < l.length; i += 3) v.push(l[i], l[i + 2], l[i + 1], l[i + 3], l[i + 5], l[i + 4]); });
@@ -153,7 +152,7 @@
   else $('.e-imp').hidden = true;
   var sb = $('.e-str'); if (sb) sb.onclick = function () {
     strOn = !strOn; sb.setAttribute('aria-pressed', strOn); setX(anyX());
-    if (strOn && !strLoaded) { strLoaded = true; load('modelli/strutture.glb', 'il telaio').then(function (root) { root.traverse(function (o) { if (o.isMesh) o.material.side = T.DoubleSide; }); str.add(root); say(''); apply(); }, function () { say('Non riesco a caricare il telaio.'); }); }
+    if (strOn && !strLoaded) { strLoaded = true; load('modelli/strutture.glb', 'il telaio').then(function (root) { root.traverse(function (o) { if (o.isMesh) o.material.side = T.DoubleSide; }); str.add(root); say(''); apply(); loadFurn(); }, function () { say('Non riesco a caricare il telaio.'); }); }
     apply();
   };
   var xb = $('.e-x'); xb.onclick = function () { setX(!xray); apply(); };
@@ -180,7 +179,17 @@
   var started = false;
   function start() {
     if (started) return; started = true; $('.espact').hidden = true; box.classList.add('live'); size(); view(-1); apply(); requestAnimationFrame(loop);
-    load('modelli/edificio.glb', 'l\'edificio').then(function (root) { fuse(root).forEach(function (m) { m.material.envMapIntensity = 0.45; keep(m.material); bld.add(m); }); say(''); apply(); }, function () { say('Non riesco a caricare il modello dell\'edificio.'); });
+    load('modelli/edificio.glb', 'l\'edificio').then(function (root) { fuse(root).forEach(function (m) { m.material.envMapIntensity = 0.45; keep(m.material); bld.add(m); }); say(''); apply(); loadFurn(); }, function () { say('Non riesco a caricare il modello dell\'edificio.'); });
+  }
+  function loadFurn() { /* mobili modellati a mano: un file per il piano tipo e uno per l'attico, ripetuti alle quote dei piani */
+    var files = { tipo: 'modelli/arredo_tipo.glb', P3: 'modelli/arredo_P3.glb' };
+    Object.keys(files).forEach(function (k) {
+      loader.load(files[k], function (g) {
+        var ms = fuse(g.scene); ms.forEach(function (m) { m.material.envMapIntensity = 0.45; keep(m.material); });
+        M.piani.forEach(function (pp, fi) { if (pp[1] !== k) return; ms.forEach(function (m) { var c = new T.Mesh(m.geometry, m.material); c.position.y = pp[2]; c.userData.f = fi; arr.add(c); }); });
+        apply(); dirty = true;
+      });
+    });
   }
   $('.espact').onclick = start;
   window.ESPLORA = { start: start, enter: enter, leave: leave, floor: function (i) { $$('.e-piani .chip')[i + 1].click(); }, imp: function (i) { $$('.e-imp .chip')[i].click(); }, str: function () { sb.click(); }, key: function (k, v) { keys[k] = v; },
