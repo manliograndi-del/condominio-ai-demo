@@ -249,6 +249,16 @@ footer .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
+/* 21/11/2026 prima pagina: testo a sinistra su fondo scuro, rendering intero a destra (la scritta non copre piu' l'edificio) */
+.hero{min-height:100svh;background:#121a20;background-image:none;align-items:center}
+.hero::before{display:none}
+.hero .wrap{padding-top:104px;padding-bottom:36px}
+.herogrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:44px;align-items:center}
+.hero h1{font-size:clamp(2.1rem,4.2vw,3.6rem)}
+.heroimg{margin:0;position:relative}
+.heroimg img{display:block;width:100%;aspect-ratio:1220/810;object-fit:cover;border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.heroimg figcaption{font-size:.72rem;opacity:.6;margin-top:8px;text-align:right}
+@media(max-width:900px){.herogrid{grid-template-columns:1fr;gap:22px}.heroimg{order:-1}.hero .wrap{padding-top:84px}}
 .fem{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start;margin-top:36px}
 @media(max-width:900px){.fem{grid-template-columns:1fr;gap:24px}}
 .fem figure{margin:0;background:#fff;border-radius:4px;overflow:hidden;cursor:zoom-in}.fem figure img{width:100%}
@@ -274,8 +284,10 @@ footer .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 </div></header>
 
 <div class="hero" id="top"><div class="wrap">
+  <div class="herogrid"><div class="herotxt">
   <h1>Un condominio progettato <em>interamente</em> dall'intelligenza artificiale.</h1>
   <p>Undici alloggi a Parma, rifatti da capo con un telaio a pilastri calcolato a elementi finiti: architettura, strutture, involucro, impianti, arredo e modelli 3D. Ogni numero è calcolato con codice, ogni ipotesi è dichiarata.</p>
+  </div><figure class="heroimg"><img src="img/r_hero.jpg" alt="L'edificio da sud-ovest: balconi, terrazzo dell'attico, giardini" fetchpriority="high"><figcaption>Immagine indicativa · preliminare, da verificare</figcaption></figure></div>
   <div class="kpis">
     <div class="kpi"><b>11</b><span>alloggi su quattro piani, più l'interrato con 15 box</span></div>
     <div class="kpi"><b>24</b><span>pilastri in calcestruzzo armato, tutti dentro i muri</span></div>
